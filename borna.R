@@ -7,6 +7,8 @@ setwd(PROJHOME)
 # libraries
 library(sp)
 library(raster)
+library(ggplot2)
+library(sf)
 
 # read presence absence datas
 borna <- read.csv("data/borna.csv", header = T, sep = ";")
@@ -36,10 +38,11 @@ points(points_all_recent[points_all_recent$borna == "positiv",], pch = 21,
 dev.off()
 
 
-library(ggplot2)
-library(sf)
+### floodplain
+###
 
-# https://www.nature.com/articles/sdata2018309
+
+# source https://www.nature.com/articles/sdata2018309
 floodplain <- raster("data/EU.tif")
 plot(floodplain)
 floodplain2 <- crop(floodplain, DEU)
@@ -52,7 +55,7 @@ plot(floodplain4, col = c("white", "purple"),
      legend = F, main= "var floodplain")
 plot(DEU, add = T)
 points(points_all_recent[points_all_recent$borna == "negativ",], pch = 21,
-       col = "black", bg = "black")
+       col = "black", bg = "gray")
 points(points_all_recent[points_all_recent$borna == "positiv",], pch = 21, 
        col = "black", bg = "red")
 dev.off()
