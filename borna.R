@@ -23,13 +23,18 @@ points_all_recent <- SpatialPointsDataFrame(coords = xy_all,
 DEU <- getData('GADM', country='DEU', level=1)
 crs(DEU) <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0" 
 
+# pos and negative sites
+png(
+  file = "figs/pos_neg_borna.png", width = 4, height = 6.5,
+  units = "in", res = 1000
+)
 plot(DEU)
 points(points_all_recent[points_all_recent$borna == "negativ",], pch = 21,
        col = "black", bg = "gray")
 points(points_all_recent[points_all_recent$borna == "positiv",], pch = 21, 
        col = "black", bg = "red")
+dev.off()
 
-points_all_recent$borna
 
 library(ggplot2)
 library(sf)
