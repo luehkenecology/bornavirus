@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+data/borna.csv
+data/EU.TFw
+data/EU.TIF
+data/EU.TIF.aux
+data/EU.TIF.aux.xml
+
