@@ -25,10 +25,10 @@ crs(DEU) <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
 
 # pos and negative sites
 png(
-  file = "figs/pos_neg_borna.png", width = 4, height = 6.5,
+  file = "figs/pos_neg_borna.png", width = 6, height = 7,
   units = "in", res = 1000
 )
-plot(DEU)
+plot(DEU, main = "presence/absence bornavirus")
 points(points_all_recent[points_all_recent$borna == "negativ",], pch = 21,
        col = "black", bg = "gray")
 points(points_all_recent[points_all_recent$borna == "positiv",], pch = 21, 
@@ -40,15 +40,16 @@ library(ggplot2)
 library(sf)
 
 # https://www.nature.com/articles/sdata2018309
-floodplain <- raster("EU.tif")
+floodplain <- raster("data/EU.tif")
 plot(floodplain)
 floodplain2 <- crop(floodplain, DEU)
 floodplain3 <- mask(floodplain2, DEU)
 floodplain4 <- !is.na(floodplain3)
 
-png(file = "borna.png",width = 10, height=7 , units = 'in', res = 500)
+
+png(file = "figs/borna.png",width = 6, height=7 , units = 'in', res = 1000)
 plot(floodplain4, col = c("white", "purple"), 
-     legend = F)
+     legend = F, main= "var floodplain")
 plot(DEU, add = T)
 points(points_all_recent[points_all_recent$borna == "negativ",], pch = 21,
        col = "black", bg = "black")
